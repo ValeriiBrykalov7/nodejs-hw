@@ -34,7 +34,7 @@ const objectIdValidator = (value, helpers) => {
 export const noteIdSchema = {
   [Segments.PARAMS]: Joi.object({
     noteId: Joi.string().custom(objectIdValidator).required().messages({
-      'string.base': 'Title must be a string',
+      'string.base': 'Note ID must be a string',
       'string.empty': 'Note ID is required',
       'any.required': 'Note ID is required',
       'any.invalid': 'Invalid Note ID format',
@@ -49,7 +49,7 @@ export const createNoteSchema = {
       'string.min': 'Title should have at least 1 character',
       'any.required': 'Title is required',
     }),
-    content: Joi.string().allow(0).messages({
+    content: Joi.string().allow('').messages({
       'string.base': 'Content must be a string',
     }),
     tag: Joi.string()
@@ -69,7 +69,7 @@ export const updateNoteSchema = {
       'string.base': 'Title must be a string',
       'string.min': 'Title should have at least {#limit} characters',
     }),
-    content: Joi.string().allow(0).messages({
+    content: Joi.string().allow('').messages({
       'string.base': 'Content must be a string',
     }),
     tag: Joi.string()

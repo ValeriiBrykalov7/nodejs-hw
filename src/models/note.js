@@ -26,8 +26,8 @@ const noteSchema = new Schema(
 
 noteSchema.index(
   {
-    title: 'text1',
-    content: 'text1',
+    title: 'text',
+    content: 'text',
   },
   {
     name: 'NoteTextIndex',
