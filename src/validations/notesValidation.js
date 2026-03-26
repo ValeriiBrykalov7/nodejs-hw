@@ -28,7 +28,9 @@ export const getAllNotesSchema = {
 };
 
 const objectIdValidator = (value, helpers) => {
-  return !isValidObjectId(value) ? helpers.message('Invalid id format') : value;
+  return !isValidObjectId(value)
+    ? helpers.message('Invalid Note ID format')
+    : value;
 };
 
 export const noteIdSchema = {
@@ -37,7 +39,6 @@ export const noteIdSchema = {
       'string.base': 'Note ID must be a string',
       'string.empty': 'Note ID is required',
       'any.required': 'Note ID is required',
-      'any.invalid': 'Invalid Note ID format',
     }),
   }),
 };
@@ -77,5 +78,5 @@ export const updateNoteSchema = {
       .messages({
         'any.only': `Tag must be one of: ${TAGS.join(', ')}`,
       }),
-  }).min(1),
+  }).or('title', 'content', 'tag'),
 };
