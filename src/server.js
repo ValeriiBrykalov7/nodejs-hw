@@ -12,6 +12,7 @@ import { logger } from './middleware/logger.js';
 
 import notesRoutes from './routes/notesRoutes.js';
 import authRoutes from './routes/authRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 import { errors } from 'celebrate';
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(logger);
 
 app.use(notesRoutes);
 app.use(authRoutes);
+app.use(userRoutes);
 
 app.use(notFoundHandler);
 app.use(errors());
