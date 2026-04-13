@@ -1,4 +1,5 @@
 import { Readable } from 'node:stream';
+import { v4 as uuid } from 'uuid';
 import { v2 as cloudinary } from 'cloudinary';
 
 cloudinary.config({
@@ -8,13 +9,13 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-export async function saveFileToCloudinary(buffer, userId) {
+export async function saveFileToCloudinary(buffer) {
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
       {
         folder: 'notes/avatars',
         resource_type: 'image',
-        public_id: `avatar_${userId}`,
+        public_id: `avatar_${uuid()}`,
         overwrite: true,
         unique_filename: false,
       },
